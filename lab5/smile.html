@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiley Face on Canvas</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+    <script>
+        // Set up the canvas
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Draw the background
+        ctx.fillStyle = '#90EE90'; // Light green background
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the face (yellow circle)
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2 - 20;
+        const faceRadius = 100;
+        
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, faceRadius, 0, Math.PI * 2, true);
+        ctx.fillStyle = '#FFFF00'; // Yellow color for face
+        ctx.fill();
+        ctx.closePath();
+
+        // Draw the eyes
+        ctx.fillStyle = '#000000'; // Black color for eyes
+        const eyeRadius = 5;
+        
+        // Left eye
+        ctx.beginPath();
+        ctx.arc(centerX - 30, centerY - 20, eyeRadius, 0, Math.PI * 2, true);
+        ctx.fill();
+        ctx.closePath();
+        
+        // Right eye
+        ctx.beginPath();
+        ctx.arc(centerX + 30, centerY - 20, eyeRadius, 0, Math.PI * 2, true);
+        ctx.fill();
+        ctx.closePath();
+
+        // Draw the nose (vertical line)
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY - 10);
+        ctx.lineTo(centerX, centerY + 10);
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+
+        // Draw the smile (curved line)
+        ctx.beginPath();
+        ctx.arc(centerX, centerY + 20, 50, 0, Math.PI, false);
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+
+        // Draw the text below the face
+        ctx.font = '20px Arial';
+        ctx.fillStyle = '#006400'; // Dark green for text
+        ctx.textAlign = 'center';
+        ctx.fillText('The Canvas brought me to life!', centerX, canvas.height - 40);
+    </script>
+</body>
+</html>
